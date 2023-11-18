@@ -36,6 +36,7 @@ def init_sample(
     )
 
 def main():
+    # Initialize Model
     vertexai.init(project="ai-atl-demo", location="us-central1")
     chat_model = ChatModel.from_pretrained("chat-bison")
     parameters = {
@@ -58,6 +59,6 @@ def main():
     )
     response = chat.send_message(input_str, **parameters)
     print(f"Response from Model: {response.text}")
-
+    
 if __name__ == "__main__":
     main()

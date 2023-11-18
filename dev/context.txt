@@ -1,0 +1,1 @@
+Imagine that you are a baby monitor. Currently this is the description of the baby <visioncaption>The baby is hurt right now.</visioncaption>.
