@@ -84,10 +84,12 @@ def main():
             # Publish and print response
             if input_str:
                 print(input_str['data'])
+
                 response = chat.send_message(str(input_str['data']), **parameters)
+
                 print(f"Response from Model: {response.text}")
-                # r.publish('chat-response', response.text)
-                break
+                
+                r.publish('chat-response', response.text)
 
     except redis.exceptions.ConnectionError as e:
         print("Error connecting to Redis:", e)
