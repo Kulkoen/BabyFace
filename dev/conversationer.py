@@ -1,9 +1,12 @@
 # Task: Complete a Conversation given a Message from the Front User
 
 # Libraries
+from venv import create
 from google.cloud import aiplatform
+
 import vertexai
 from vertexai.language_models import ChatModel, InputOutputTextPair
+from redis_database import *
 
 # Paths 
 CONTEXT_FILE = "context.txt"
@@ -34,8 +37,11 @@ def init_sample(
         encryption_spec_key_name=encryption_spec_key_name,
         service_account=service_account,
     )
-
+    
 def main():
+    # Initialize Redis database 
+    r = create_redis_instance()
+    
     # Initialize Model
     vertexai.init(project="ai-atl-demo", location="us-central1")
     chat_model = ChatModel.from_pretrained("chat-bison")
@@ -59,6 +65,9 @@ def main():
     )
     response = chat.send_message(input_str, **parameters)
     print(f"Response from Model: {response.text}")
+
+    while True:
+        r.publish('chat-response', response.text)
     
 if __name__ == "__main__":
     main()
