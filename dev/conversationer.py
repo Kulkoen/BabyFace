@@ -14,9 +14,9 @@ context_str = ""
 input_str = ""
 
 def init_sample(
-    project: 'ai-atl-demo',
-    location: 'us-central1',
-    experiment: 'first-experiment',
+    project: None,
+    location: None,
+    experiment: None,
     staging_bucket: None,
     credentials: None,
     encryption_spec_key_name: None,
