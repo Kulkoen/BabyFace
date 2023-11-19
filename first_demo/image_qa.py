@@ -7,7 +7,7 @@ from google.cloud import aiplatform
 import vertexai
 from vertexai.vision_models import ImageTextModel, Image
 
-def main():
+def start_imageqa():
     # Google Cloud Parameters
     PROJECT_ID = "ai-atl-demo"  # @param {type:"string"}
     LOCATION = "us-central1"  # @param {type:"string"}
@@ -78,7 +78,3 @@ def main():
 
     except Exception as e:
         print(f"An error occurred while processing the image: {str(e)}")
-
-
-if __name__ == "__main__":
-    main()

@@ -34,7 +34,7 @@ def init_sample(
         service_account=service_account,
     )
     
-def main():
+def start_conversationer():
     global input_str
 
     # Initialize Redis database 
@@ -72,6 +72,3 @@ def main():
 
     except redis.exceptions.ConnectionError as e:
         print("Error connecting to Redis:", e)
-    
-if __name__ == "__main__":
-    main()
