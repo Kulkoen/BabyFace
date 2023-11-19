@@ -59,8 +59,6 @@ def main():
     # Initialize Inputs
     with open(CONTEXT_FILE) as f:
         context_str = f.read()
-    # with open(CONTEXT_FILE) as f:
-    #     input_str = f.read()
     
     # Conversation
     chat = chat_model.start_chat(
