@@ -1,3 +1,6 @@
+# Task: Use Vertex AI to Implement a Image Q&A Model
+
+# Libraries
 import os
 from redis_database import *
 from google.cloud import aiplatform
@@ -5,32 +8,33 @@ import vertexai
 from vertexai.vision_models import ImageTextModel, Image
 
 def main():
+    # Google Cloud Parameters
     PROJECT_ID = "ai-atl-demo"  # @param {type:"string"}
     LOCATION = "us-central1"  # @param {type:"string"}
-    
+
+    # Default Responses 
     response1 = ""
     response2 = ""
     response3 = ""
 
+    # Initialize Model
     vertexai.init(project=PROJECT_ID, location=LOCATION)
     model = ImageTextModel.from_pretrained("imagetext@001")
 
-    # Assuming the "Images" folder is within the GitHub repository directory
-    #current_directory = os.path.dirname(os.path.abspath(__file__))  # Get the current directory of your Python script
-    images_path = "/Users/phuc/Desktop/HappyBaby/first_demo/images/"
-
     # Load the image from the specified path within the "Images" folder
+    images_path = "/Users/phuc/Desktop/HappyBaby/first_demo/images/"
     image_filename = 'baby_by_chemicals.jpeg'
     source_image_path = os.path.join(images_path, image_filename)
     source_image = Image.load_from_file(location=source_image_path)
     
-    #questions list
+    # Questions List
     questions = [
         "Identify the primary emotion expressed by the baby in the image among these options: Angry, Disgust, Fear, Jappy, Sad, Surprise, Neutral.",
         "Is there anything considered unsafe for a baby in the environment? If yes, respond with 'Alert:' followed by the event.",
         "Detail the most observable behavior or actions of the baby in the image that correspond to expressions such as crying, smiling, laughing, sleeping, or any other notable actions."
     ]
     
+    # Generate Answers
     for i, question in enumerate(questions):
         answers = model.ask_question(
             image=source_image,
@@ -55,11 +59,11 @@ def main():
     r = create_redis_instance()
     
     try:
-        # Try to ping the Redis server to check the connection
+        # Check Connection
         response = r.ping()
         print("Connection successful. Redis server responded:", response)
 
-        # Publish Message
+        # Publish Context for Conversationer
         context = """Imagine that you are a baby monitor. 
                     Currently, this is the baby's current emotion: {}.
                     This is the description of the baby's environment: {}.
@@ -69,6 +73,7 @@ def main():
                     Write as if you are a friendly young caretaker.
                     """.format(response1, response2, response3)
 
+        # Send Message
         r.hset("image-info", '0', context)
 
     except Exception as e:

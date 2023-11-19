@@ -1,3 +1,6 @@
+# Initialize Front-End Development with User
+
+# Libraries
 from redis_database import *
 from twilio.rest import Client
 import time
@@ -15,11 +18,14 @@ def main():
 
     # Flags 
     entry_flag = True
-    # Receive User Message
+
     while True:
+
+        # Retrieve Message
         messages = client.messages.list()
         userMessage = messages[1].body
 
+        # Send Message to Happy
         if userMessage and entry_flag:
             response = r.ping()
             print("Connection successful. Redis server responded:", response)
@@ -27,6 +33,7 @@ def main():
             entry_flag = False
             print(userMessage)
 
+        # Send Happy's Message to User
         r.ping()
         happyMessage = r.hget('send-to-user', '0')
         if happyMessage:

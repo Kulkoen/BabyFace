@@ -63,9 +63,6 @@ def main():
     try:
         # Try to ping the Redis server to check the connection
         response = chat.send_message(str(input_str), **parameters)
-        
-        # res = r.ping()
-        # print("Connection successful. Redis server responded:", res)
 
         r_set = create_redis_instance()
         res = r_set.ping()
