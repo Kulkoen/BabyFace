@@ -1,4 +1,5 @@
 import os
+from redis_database import *
 from google.cloud import aiplatform
 import vertexai
 from vertexai.vision_models import ImageTextModel, Image
@@ -37,6 +38,7 @@ def main():
                     number_of_results=1,
                 )
                 answer = (str(answers).replace('[','').replace(']','').replace("'","").strip())
+                
                 if i == 0:
                     response1 = "Your baby is feeling " + answer + "."
                 if i == 1:
@@ -56,6 +58,24 @@ def main():
             print(f"Image file '{image_filename}' not found in the specified location: '{source_image_path}'")
     except Exception as e:
         print(f"An error occurred while processing the image: {str(e)}")
+
+
+    # Initialize Redis database 
+    r = create_redis_instance()
+    
+    try:
+        # Try to ping the Redis server to check the connection
+        response = r.ping()
+        print("Connection successful. Redis server responded:", response)
+
+        # Publish Message
+        message = response1 + "/" + response2 + "/" + response3
+        #while True:
+        r.publish("baby-info", message)
+
+    except redis.exceptions.ConnectionError as e:
+        print("Error connecting to Redis:", e)
+
 
 if __name__ == "__main__":
     main()
