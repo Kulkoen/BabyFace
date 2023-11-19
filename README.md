@@ -26,7 +26,8 @@ Install and setup Twilio for Python using this [link](https://www.twilio.com/doc
 
 ### Diagram
 
-![Workflow](../HappyBaby/workflow.png)
+![Workflow](workflow.png)
+
 
 ### Redis Database
 
