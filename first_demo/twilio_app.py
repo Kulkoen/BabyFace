@@ -72,7 +72,7 @@ def handle_sms():
     while True:
         # Retrieve Message
         messages = client.messages.list()
-        userMessage = messages[1].body
+        userMessage = messages[0].body
 
         # Send Message to Happy
         if userMessage and entry_flag:

@@ -23,7 +23,7 @@ def start_imageqa():
 
     # Load the image from the specified path within the "Images" folder
     images_path = "/Users/phuc/Desktop/HappyBaby/first_demo/images/"
-    image_filename = 'baby_by_chemicals.jpeg'
+    image_filename = 'captured_image_0.jpeg'
     source_image_path = os.path.join(images_path, image_filename)
     source_image = Image.load_from_file(location=source_image_path)
     
@@ -69,8 +69,8 @@ def start_imageqa():
                     This is the description of the baby's environment: {}.
                     Finally, this is the baby's action: {}.
                     Your user is a parent who is currently unable to assist the baby.
-                    Write a brief summary to inform your user of all details.
                     Write as if you are a friendly young caretaker.
+                    Answer the parent's question in one sentence.
                     """.format(response1, response2, response3)
 
         # Send Message

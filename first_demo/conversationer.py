@@ -55,6 +55,9 @@ def start_conversationer():
     context_str = r_get.hget('image-info', '0')
     input_str = r_get.hget('send-to-happy', '0')
 
+    print(context_str)
+    print(input_str)
+    
     # Conversation
     chat = chat_model.start_chat(
         context=context_str
