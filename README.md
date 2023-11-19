@@ -1,7 +1,4 @@
-# Documentation
-
-# Set-Up
-
+# BabyFace
 ## 🔧 Dependencies
 
 ```markdown
