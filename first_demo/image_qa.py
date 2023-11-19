@@ -25,13 +25,15 @@ def start_imageqa():
     images_path = "/Users/phuc/Desktop/HappyBaby/first_demo/images/"
     image_filename = 'captured_image_0.jpeg'
     source_image_path = os.path.join(images_path, image_filename)
+    #source_image_path = "/Users/phuc/Desktop/HappyBaby/Images/happy_baby.jpeg"
     source_image = Image.load_from_file(location=source_image_path)
+    
     
     # Questions List
     questions = [
-        "Identify the primary emotion expressed by the baby in the image among these options: Angry, Disgust, Fear, Jappy, Sad, Surprise, Neutral.",
-        "Is there anything considered unsafe for a baby in the environment? If yes, respond with 'Alert:' followed by the event.",
-        "Detail the most observable behavior or actions of the baby in the image that correspond to expressions such as crying, smiling, laughing, sleeping, or any other notable actions."
+        "Identify the primary emotion expressed by the baby in the image among these options: Angry, Disgust, Fear, Happy, Sad, Surprised, Neutral",
+        "Is there anything considered unsafe for a baby in the environment? Yes or no",
+        "Detail the most observable behavior or action of the baby in the image that correspond to expressions such as crying, smiling, laughing, sleeping, crawling, babbling, and other notable actions."
     ]
     
     # Generate Answers
@@ -64,13 +66,14 @@ def start_imageqa():
         print("Connection successful. Redis server responded:", response)
 
         # Publish Context for Conversationer
-        context = """Imagine that you are a baby monitor. 
+        context = """Imagine that you are a child caretaker that is observing a baby. 
                     Currently, this is the baby's current emotion: {}.
-                    This is the description of the baby's environment: {}.
-                    Finally, this is the baby's action: {}.
-                    Your user is a parent who is currently unable to assist the baby.
-                    Write as if you are a friendly young caretaker.
-                    Answer the parent's question in one sentence.
+                    If the answer 'yes', the baby is in a potentially dangerous environment, if 'no', the baby is safe: {}.
+                    Finally, this is the baby's current action: {}.
+                    Write as if you are a young caretaker.
+                    In a couple sentences, answer the parent's prompt in the appropiate tone for the situation.
+                    Provide additional context if deemed helpful.
+                    Make sure to include all provided context about the baby in your description.
                     """.format(response1, response2, response3)
 
         # Send Message

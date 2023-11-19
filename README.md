@@ -37,7 +37,7 @@ Create library to use in other files to create the same Redis instance
 
 Initiates conversation with Vertex AI and sends/receives messages from a Redis Database.
 
-```jsx
+```markdown
 Initializes Google API Platform
 Initializes Redis Database
 Initializes a Vertex AI ChatModel using a pre-trained model named "chat-bison"
@@ -71,6 +71,16 @@ Create a Twilio Client
 Retrieve and publish the Parent's Message 
 	for Conversationer
 Retrieve Conversationer's Message and send to the Parent
+```
+
+### Image Capturer
+
+Takes image from laptops' webcam 
+
+```markdown
+Open a connection to camera
+Once every 10 second has passed since the last capture, 
+	capture a new image
 ```
 
 ## 🚀 Launch
