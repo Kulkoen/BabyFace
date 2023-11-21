@@ -1,7 +1,4 @@
-# Documentation
-
-# Set-Up
-
+# BabyFace
 ## 🔧 Dependencies
 
 ```markdown
@@ -88,11 +85,12 @@ Once every 10 second has passed since the last capture,
 1. Navigate to `first_demo` folder
 2. Ensure that Google Application Default Credentials are set up 
 3. Confirm that Twilio’s Account SID, Authentication Code, and Phone Numbers are correct
-4. Learn the virtual environment that you have created with the main dependencies 
-5. Execute `ngrok http 5000` and copy ngrok URL into Twilio Webhook
+4. Learn the virtual environment that you have created with the main dependencies
+5. Execute `capture_image.py` on a terminal
+6. Execute `ngrok http 5000` on a different terminal and copy ngrok URL into Twilio Webhook
     1. ⚠️MacOS needs to turn off Airplay Receiver in Settings
-6. Execute Twilio Flask App `twilio_app.py` 
-7. Text to Your Designated Baby Face AI!
+7. Execute Twilio Flask App `twilio_app.py` on another terminal, resulting in three different running terminals
+8. Text to Your Designated Baby Face AI!
 
 ## 🔮 Future Implementations
 
