@@ -41,7 +41,7 @@ def start_conversationer():
     r_get = create_redis_instance()
 
     # Initialize Model
-    vertexai.init(project="ai-atl-demo", location="us-central1")
+    vertexai.init(project="", location="")
     chat_model = ChatModel.from_pretrained("chat-bison")
     parameters = {
         "candidate_count": 1,

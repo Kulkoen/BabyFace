@@ -9,8 +9,8 @@ from vertexai.vision_models import ImageTextModel, Image
 
 def start_imageqa():
     # Google Cloud Parameters
-    PROJECT_ID = "ai-atl-demo"  # @param {type:"string"}
-    LOCATION = "us-central1"  # @param {type:"string"}
+    PROJECT_ID = ""  # @param {type:"string"}
+    LOCATION = ""  # @param {type:"string"}
 
     # Default Responses 
     response1 = ""
@@ -22,10 +22,10 @@ def start_imageqa():
     model = ImageTextModel.from_pretrained("imagetext@001")
 
     # Load the image from the specified path within the "Images" folder
-    images_path = "/Users/phuc/Desktop/HappyBaby/first_demo/images/"
-    image_filename = 'captured_image_0.jpeg'
-    source_image_path = os.path.join(images_path, image_filename)
-    #source_image_path = "/Users/phuc/Desktop/HappyBaby/Images/happy_baby.jpeg"
+    # images_path = "/Users/phuc/Desktop/HappyBaby/first_demo/images/"
+    # image_filename = 'captured_image_0.jpeg'
+    # source_image_path = os.path.join(images_path, image_filename)
+    source_image_path = ""
     source_image = Image.load_from_file(location=source_image_path)
     
     
@@ -33,7 +33,7 @@ def start_imageqa():
     questions = [
         "Identify the primary emotion expressed by the baby in the image among these options: Angry, Disgust, Fear, Happy, Sad, Surprised, Neutral",
         "Is there anything considered unsafe for a baby in the environment? Yes or no",
-        "Detail the most observable behavior or action of the baby in the image that correspond to expressions such as crying, smiling, laughing, sleeping, crawling, babbling, and other notable actions."
+        "Detail the most notable behavior or action of the baby in the image that are, or are similar to, actions such as: smiling, laughing, crying, sleeping, crawling, babbling, and other notable actions."
     ]
     
     # Generate Answers
@@ -71,8 +71,8 @@ def start_imageqa():
                     If the answer 'yes', the baby is in a potentially dangerous environment, if 'no', the baby is safe: {}.
                     Finally, this is the baby's current action: {}.
                     Write as if you are a young caretaker.
-                    In a couple sentences, answer the parent's prompt in the appropiate tone for the situation.
-                    Provide additional context if deemed helpful.
+                    In a couple sentences, answer the parent's prompt in the appropiate tone based on the baby's emotion.
+                    Provide additional context and filler words to be more conversational.
                     Make sure to include all provided context about the baby in your description.
                     """.format(response1, response2, response3)
 

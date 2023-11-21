@@ -30,7 +30,7 @@ while True:
 
     # Check if 10 seconds have passed since the last image capture
     current_time = time.time()
-    if current_time - last_capture_time >= 1:
+    if current_time - last_capture_time >= 5:
         # Save the frame as an image
         image_filename = f"./images/captured_image_{image_index}.jpeg"
         cv2.imwrite(image_filename, frame)
